@@ -18,6 +18,11 @@ let currentModel = {},
 let button = document.querySelector('.startButton'),
     WHButton = document.querySelector('.WHButton')
 
+// 禁用长按弹出菜单
+window.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+})
+
 const MODELS = [
     // L type model
     {
@@ -360,8 +365,64 @@ function isGameStar() {
         button.innerHTML = "PAUSE"
         button.value = 'stared'
         button.style.display = "none"
+        let controlButton = document.querySelector('.controlButton')
+        controlButton.style.marginTop = '15px';
         init()
     }
+    let WButton = document.querySelector(".WButton"),
+        AButton = document.querySelector(".AButton"),
+        SButton = document.querySelector(".SButton"),
+        DButton = document.querySelector(".DButton"),
+        Space = document.querySelector(".Space")
+    var timer = null;
+    const t = 50
+    WButton.ontouchstart = () => {
+        timer = setInterval(function () {
+            rotate();
+        }, t)
+    }
+    WButton.ontouchend = function () {
+        clearTimeout(timer);
+    };
+
+    AButton.ontouchstart = () => {
+        timer = setInterval(function () {
+            move(-1, 0)
+        }, t)
+    }
+    AButton.ontouchend = function () {
+        clearTimeout(timer);
+    };
+    SButton.ontouchstart = () => {
+        timer = setInterval(function () {
+            move(0, 1)
+        }, t)
+
+    }
+    SButton.ontouchend = function () {
+        clearTimeout(timer);
+    };
+    DButton.ontouchstart = () => {
+        timer = setInterval(function () {
+            move(1, 0)
+        }, t)
+
+    }
+    DButton.ontouchend = function () {
+
+        clearTimeout(timer);
+    };
+    Space.ontouchstart = () => {
+        timer = setInterval(function () {
+            move(0, 1)
+            move(0, 1)
+        }, t)
+
+    }
+    Space.ontouchend = function () {
+        clearTimeout(timer);
+    };
+
 }
 
 function gameOver() {
@@ -374,9 +435,9 @@ function gameOver() {
 }
 
 /* function isPause() {
-
+ 
     if (button.innerHTML == "PAUSE") {
-
+ 
         button.onclick = function () {
             button.innerHTML = "START"
         }
@@ -388,7 +449,7 @@ function gameOver() {
         }
         return true
     }
-
+ 
 } */
 
 
