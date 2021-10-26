@@ -375,8 +375,26 @@ function isGameStar() {
         SButton = document.querySelector(".SButton"),
         DButton = document.querySelector(".DButton"),
         Space = document.querySelector(".Space")
+
+    WButton.onclick = function () {
+        rotate()
+    }
+    AButton.onclick = function () {
+        move(-1, 0)
+    }
+    SButton.onclick = function () {
+        move(0, 1)
+    }
+    DButton.onclick = function () {
+        move(1, 0)
+    }
+    Space.onclick = function () {
+        move(0, 1)
+        move(0, 1)
+    }
     let t = 40
     WButton.ontouchstart = () => {
+        console.log('WButton.ontouchstart');
         timer = setInterval(function () {
             rotate();
         }, t)
@@ -386,6 +404,7 @@ function isGameStar() {
     };
 
     AButton.ontouchstart = () => {
+        console.log('AButton.ontouchstart');
         timer = setInterval(function () {
             move(-1, 0)
         }, t)
