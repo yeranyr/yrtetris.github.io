@@ -5,8 +5,8 @@ const STEP = 20,
     COLOR = ['blueviolet', 'slateblue', 'steelblue', 'lightseagreen', 'saddlebrown', 'indianred', 'brown', 'red']
 
 let GAME_ROW = 18,
-    GAME_COL = 10
-
+    GAME_COL = 10,
+    timer = null;
 let currentModel = {},
     currentModelColor,
     currentModelX = 0,
@@ -366,16 +366,16 @@ function isGameStar() {
         button.value = 'stared'
         button.style.display = "none"
         let controlButton = document.querySelector('.controlButton')
-        controlButton.style.marginTop = '15px';
+        controlButton.style.marginTop = '-30px';
         init()
     }
+
     let WButton = document.querySelector(".WButton"),
         AButton = document.querySelector(".AButton"),
         SButton = document.querySelector(".SButton"),
         DButton = document.querySelector(".DButton"),
         Space = document.querySelector(".Space")
-    var timer = null;
-    const t = 50
+    let t = 40
     WButton.ontouchstart = () => {
         timer = setInterval(function () {
             rotate();
@@ -416,7 +416,7 @@ function isGameStar() {
         timer = setInterval(function () {
             move(0, 1)
             move(0, 1)
-        }, t)
+        }, 35)
 
     }
     Space.ontouchend = function () {
